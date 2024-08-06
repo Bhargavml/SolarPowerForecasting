@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Power Forecasting Form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #2a3419;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #FAF5E9;
+        }
+        .navbar-brand {
+            color: #2a3419;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            flex-grow: 1; /* Center the text */
+        }
+        .navbar-brand:hover {
+            color: #d8b84c;
+        }
+        .navbar-nav .nav-link {
+            color: #e9c45c;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #d8b84c;
+        }
+        .container {
+            margin-top: 20px;
+            max-width: 500px; /* Reduced form size */
+        }
+        h3 {
+            color: #675020;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .form-control {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 0.5rem; /* Reduce padding inside input fields */
+        }
+        .form-label {
+            color: #000000;
+            margin-bottom: 0.5rem; /* Reduce margin below labels */
+        }
+        .form-group {
+            margin-bottom: 1rem; /* Reduce margin between form groups */
+        }
+        .btn-custom-green {
+            background-color: #7c2c09;
+            color: white;
+        }
+        .btn-custom-green:hover {
+            background-color: #6a1f06;
+        }
+        .btn-custom-reset {
+            background-color: #fd7e14;
+            color: white;
+        }
+        .btn-custom-reset:hover {
+            background-color: #e16b00;
+        }
+        .alert {
+            margin-top: 20px;
+        }
+        .card {
+            background-color: #e9c45c; 
+            border: none;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+        .card-body {
+            color: #FAF5E9;
+            padding: 1rem; /* Reduce padding inside the card body */
+        }
+
+        .ml {
+            font-color: #675020;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
+                </li>
+            </ul>
+            <a class="navbar-brand" href="/"><h1>Solar Power Forecasting</h1></a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h3>{{ model_type }}</h3>
+                <form id="forecasting-form" method="post" action="/submit_form">
+                    <input class="ml" type="hidden" name="model_type" value="{{ model_type }}">
+                    <div class="form-group">
+                        <label for="distance_to_solar_noon" class="form-label">Distance to Solar Noon:</label>
+                        <input type="text" id="distance_to_solar_noon" name="distance_to_solar_noon" class="form-control" placeholder="Enter distance to solar noon">
+                    </div>
+                    <div class="form-group">
+                        <label for="temperature" class="form-label">Temperature (°C):</label>
+                        <input type="text" id="temperature" name="temperature" class="form-control" placeholder="Enter temperature">
+                    </div>
+                    <div class="form-group">
+                        <label for="wind_direction" class="form-label">Wind Direction (degrees):</label>
+                        <input type="text" id="wind_direction" name="wind_direction" class="form-control" placeholder="Enter wind direction">
+                    </div>
+                    <div class="form-group">
+                        <label for="wind_speed" class="form-label">Wind Speed (m/s):</label>
+                        <input type="text" id="wind_speed" name="wind_speed" class="form-control" placeholder="Enter wind speed">
+                    </div>
+                    <div class="form-group">
+                        <label for="sky_cover" class="form-label">Sky Cover:</label>
+                        <input type="text" id="sky_cover" name="sky_cover" class="form-control" placeholder="Enter sky cover">
+                    </div>
+                    <div class="form-group">
+                        <label for="visibility" class="form-label">Visibility (km):</label>
+                        <input type="text" id="visibility" name="visibility" class="form-control" placeholder="Enter visibility">
+                    </div>
+                    <div class="form-group">
+                        <label for="humidity" class="form-label">Humidity (%):</label>
+                        <input type="text" id="humidity" name="humidity" class="form-control" placeholder="Enter humidity">
+                    </div>
+                    <div class="form-group">
+                        <label for="average_wind_speed" class="form-label">Average Wind Speed (m/s):</label>
+                        <input type="text" id="average_wind_speed" name="average_wind_speed" class="form-control" placeholder="Enter average wind speed">
+                    </div>
+                    <div class="form-group">
+                        <label for="average_pressure" class="form-label">Average Pressure (Hg inches):</label>
+                        <input type="text" id="average_pressure" name="average_pressure" class="form-control" placeholder="Enter average pressure">
+                    </div>
+                    <button type="submit" class="btn btn-custom-green btn-block">Predict Power Generation</button>
+                    <button type="reset" class="btn btn-custom-reset btn-block">Reset Form</button>
+                </form>
+                {% if power_generated is not none %}
+                    <div class="alert alert-info text-center" role="alert">
+                        Predicted Power Generation: <strong>{{ power_generated }} Joules</strong>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
