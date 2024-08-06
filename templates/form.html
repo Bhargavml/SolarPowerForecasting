@@ -34,7 +34,7 @@
         }
         .container {
             margin-top: 20px;
-            max-width: 500px; /* Reduced form size */
+            max-width: 700px; /* Increased form size to accommodate side-by-side fields */
         }
         h3 {
             color: #675020;
@@ -79,7 +79,6 @@
             color: #FAF5E9;
             padding: 1rem; /* Reduce padding inside the card body */
         }
-
         .ml {
             font-color: #675020;
         }
@@ -104,41 +103,48 @@
                 <h3>{{ model_type }}</h3>
                 <form id="forecasting-form" method="post" action="/submit_form">
                     <input class="ml" type="hidden" name="model_type" value="{{ model_type }}">
-                    <div class="form-group">
-                        <label for="distance_to_solar_noon" class="form-label">Distance to Solar Noon:</label>
-                        <input type="text" id="distance_to_solar_noon" name="distance_to_solar_noon" class="form-control" placeholder="Enter distance to solar noon">
-                    </div>
-                    <div class="form-group">
-                        <label for="temperature" class="form-label">Temperature (°C):</label>
-                        <input type="text" id="temperature" name="temperature" class="form-control" placeholder="Enter temperature">
-                    </div>
-                    <div class="form-group">
-                        <label for="wind_direction" class="form-label">Wind Direction (degrees):</label>
-                        <input type="text" id="wind_direction" name="wind_direction" class="form-control" placeholder="Enter wind direction">
-                    </div>
-                    <div class="form-group">
-                        <label for="wind_speed" class="form-label">Wind Speed (m/s):</label>
-                        <input type="text" id="wind_speed" name="wind_speed" class="form-control" placeholder="Enter wind speed">
-                    </div>
-                    <div class="form-group">
-                        <label for="sky_cover" class="form-label">Sky Cover:</label>
-                        <input type="text" id="sky_cover" name="sky_cover" class="form-control" placeholder="Enter sky cover">
-                    </div>
-                    <div class="form-group">
-                        <label for="visibility" class="form-label">Visibility (km):</label>
-                        <input type="text" id="visibility" name="visibility" class="form-control" placeholder="Enter visibility">
-                    </div>
-                    <div class="form-group">
-                        <label for="humidity" class="form-label">Humidity (%):</label>
-                        <input type="text" id="humidity" name="humidity" class="form-control" placeholder="Enter humidity">
-                    </div>
-                    <div class="form-group">
-                        <label for="average_wind_speed" class="form-label">Average Wind Speed (m/s):</label>
-                        <input type="text" id="average_wind_speed" name="average_wind_speed" class="form-control" placeholder="Enter average wind speed">
-                    </div>
-                    <div class="form-group">
-                        <label for="average_pressure" class="form-label">Average Pressure (Hg inches):</label>
-                        <input type="text" id="average_pressure" name="average_pressure" class="form-control" placeholder="Enter average pressure">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="distance_to_solar_noon" class="form-label">Distance to Solar Noon:</label>
+                                <input type="text" id="distance_to_solar_noon" name="distance_to_solar_noon" class="form-control" placeholder="Enter distance to solar noon">
+                            </div>
+                            <div class="form-group">
+                                <label for="temperature" class="form-label">Temperature (°C):</label>
+                                <input type="text" id="temperature" name="temperature" class="form-control" placeholder="Enter temperature">
+                            </div>
+                            <div class="form-group">
+                                <label for="wind_direction" class="form-label">Wind Direction (degrees):</label>
+                                <input type="text" id="wind_direction" name="wind_direction" class="form-control" placeholder="Enter wind direction">
+                            </div>
+                            <div class="form-group">
+                                <label for="sky_cover" class="form-label">Sky Cover:</label>
+                                <input type="text" id="sky_cover" name="sky_cover" class="form-control" placeholder="Enter sky cover">
+                            </div>
+                            <div class="form-group">
+                                <label for="wind_speed" class="form-label">Wind Speed (m/s):</label>
+                                <input type="text" id="wind_speed" name="wind_speed" class="form-control" placeholder="Enter wind speed">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                           
+                            <div class="form-group">
+                                <label for="visibility" class="form-label">Visibility (km):</label>
+                                <input type="text" id="visibility" name="visibility" class="form-control" placeholder="Enter visibility">
+                            </div>
+                            <div class="form-group">
+                                <label for="humidity" class="form-label">Humidity (%):</label>
+                                <input type="text" id="humidity" name="humidity" class="form-control" placeholder="Enter humidity">
+                            </div>
+                            <div class="form-group">
+                                <label for="average_wind_speed" class="form-label">Average Wind Speed (m/s):</label>
+                                <input type="text" id="average_wind_speed" name="average_wind_speed" class="form-control" placeholder="Enter average wind speed">
+                            </div>
+                            <div class="form-group">
+                                <label for="average_pressure" class="form-label">Average Pressure (Hg inches):</label>
+                                <input type="text" id="average_pressure" name="average_pressure" class="form-control" placeholder="Enter average pressure">
+                            </div>
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-custom-green btn-block">Predict Power Generation</button>
                     <button type="reset" class="btn btn-custom-reset btn-block">Reset Form</button>
